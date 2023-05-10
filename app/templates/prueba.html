@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listas desplegables dinámicas</title>
+</head>
+<body>
+    <label for="marca">Marca:</label>
+    <select id="marca" onchange="cargarModelos()">
+        <option value="">Seleccione una marca</option>
+        <option value="ABARTH">Abarth</option>
+        <option value="ALFA ROMEO">Alfa Romeo</option>
+        <option value="AUDI">Audi</option>
+        <option value="BMW">BMW</option>
+        <!-- ... -->
+    </select>
+
+    <br>
+
+    <label for="modelo">Modelo:</label>
+    <select id="modelo"></select>
+
+    <script>
+        var modelos_por_marca = {
+                            "ABARTH": ["500", "500C", "695"] ,
+                            "ALFA ROMEO": ["Giulietta" ,"Stelvio", "Giulia", "MiTo" ,"Tonale"] ,
+                            "AUDI": ["A3", "A1", "Q2" ,"A4" ,"Q3" ,"A5", "Q7", "Q5" ,"A4 Allroad Quattro", "Q3 Sportback", "Q8", "A6" ,"A8", "SQ7", "Q5 SPORTBACK", "A7", "RS6" ,"S1" ,"R8", "A6 allroad quattro", "TT", "SQ5", "S5" ,"RS7" ,"RS4"] ,
+                            "BMW": ["X3", "Serie 5", "X5", "Serie 1", "Serie 2 Gran Tourer", "X4", "Serie 4", "X1", "Serie 3", "Serie 7", "X2", "i3", "Serie 6", "i8", "Serie 2", "Serie 2 Active Tourer", "Serie 8", "X6" ,"i4", "iX3", "X7", "Z4", "iX"] ,
+                            "CHEVROLET" : ["Trax", "Orlando", "Aveo", "Captiva", "Cruze", "Camaro", "Spark", "Corvette Stingray"] ,
+                            "CITROEN" : ["C4 Picasso", "Grand C4 Picasso" ,"C3 Picasso" ,"C3", "C4", "CElysee", "C1", "Berlingo", "C3 Aircross" ,"Grand C4 Spacetourer", "C5 Aircross", "C4 Cactus", "C5 Aircross Hybrid", "C5" ,"C4 Spacetourer", "Spacetourer", "eC4" ,"Jumper", "DS3", "C4 Aircross", "DS4", "C5 X"] ,
+                            "CUPRA" : ["Ateca", "Formentor", "Born", "Leon"] ,
+                            "DACIA" : ["Sandero", "Duster", "Dokker", "Lodgy", "Logan"] ,
+                            "DS ": ["DS 4 Crossback", "DS 7 Crossback", "DS 3 Crossback" ,"DS 4", "DS 5", "DS 7 Crossback ETense", "DS 3"] ,
+                            "FERRARI" : ["California", "GTC4", "488" ,"458", "812" ,"Portofino" ,"FF"] ,
+                            "FIAT" : ["500X", "500L", "Tipo" ,"Freemont", "500" ,"Punto" ,"Panda", "500C", "124 Spider", "Doblo", "Qubo", "Fullback", "Doblo Panorama", "Ducato", "Doblo Cargo"] ,
+                            "FORD" : ["Focus", "EcoSport", "Mustang", "Puma", "Kuga", "Mondeo", "Ranger", "CMax", "Galaxy", "Fiesta" ,"SMAX" ,"BMAX", "Tourneo Custom", "Tourneo Courier", "KA", "Transit Connect", "Grand C-Max" ,"Edge", "Mustang MachE", "Kaplus", "Grand CMax", "Grand Tourneo Connect" ,"Fusion", "Explorer", "Tourneo Connect"] ,
+                            "HONDA" : ["Civic", "CRV", "Jazz" ,"HRV", "CR-V"] ,
+                            "HYUNDAI" : ["i40", "Kona", "ix20", "TUCSON", "ix35" ,"IONIQ", "i30", "Grand Santa Fe", "Santa Fe" ,"i20", "i10", "Elantra" ,"Bayon", "i20 Active", "H1 Travel"] ,
+                            "JAGUAR" : ["F-Pace", "EPace" ,"XF" ,"XE" ,"Fpace","FType", "iPace"] ,
+                            "JEEP" : ["Renegade" ,"Grand Cherokee" ,"Compass", "Wrangler Unlimited", "Wrangler", "Cherokee" ,"Gladiator"] ,
+                            "KIA" : ["Sportage" ,"Optima" ,"Ceed Tourer" ,"Pro Ceed", "Rio", "Carens", "Niro" ,"ceed", "eSoul" ,"Picanto" ,"eNiro", "Stonic", "Venga", "Sorento", "ProCeed", "XCeed", "ceed Sportswagon", "EV6", "Soul", "Soul EV", "cee'd"] ,
+                            "LAND-ROVER" : ["Range Rover Sport", "Range Rover Evoque", "Defender", "Discovery Sport", "Range Rover Velar", "Discovery 4", "Range Rover", "Discovery" ,"Freelander"] ,
+                            "LEXUS" : ["UX", "NX", "IS" ,"CT", "RX", "RC", "ES" ,"GS"] ,
+                            "MAZDA" : ["MX5", "CX5", "CX-5" ,"Mazda3", "CX30", "Mazda6", "CX3" ,"Mazda2", "CX7", "Mazda5", "MX30", "CX-3", "CX-30" ,"MX-5" ,"CX9"] ,
+                            "MERCEDES-BENZ" : ["Clase A", "Clase GLA" ,"Clase E" ,"Clase C", "Clase B", "Clase GLE Coupe", "Clase M" ,"Clase GLE", "Clase CLA", "GLB", "Clase GLK", "GLA", "Clase GLC", "GLE" ,"GLC Coupe" ,"Clase G", "CLA", "Clase X", "Clase V", "CLS", "Clase S", "Citan", "Clase GLS", "GLC Coupé", "Vito", "Clase CLS", "EQC" ,"EQA" ,"AMG GT", "Clase SLK", "Clase T", "EQE", "MercedesAMG GT", "GLC", "Clase SLC", "GLE Coupe", "Viano"] ,
+                            "MINI" : ["MINI","CLUBMAN" ,"Countryman", "Paceman"] ,
+                            "MITSUBISHI" : ["Space Star", "Outlander", "ASX" ,"Eclipse Cross" ,"L200", "Montero"] ,
+                            "NISSAN" : ["LEAF" ,"QASHQAI" ,"NOTE" ,"JUKE", "Micra", "Navara" ,"XTRAIL", "PULSAR", "GTR", "EVALIA" ,"NV300", "Townstar", "370Z", "NV200 EVALIA"] ,
+                            "OPEL" : ["Corsa", "Grandland X", "Combo Life", "Crossland", "Astra", "Cabrio", "Mokka X", "Antara", "Insignia" ,"GTC" ,"Mokka" ,"Zafira", "Grandland", "Vivaro", "Crossland X", "Grandland PHEV", "Zafira Tourer", "Corsae" ,"Meriva", "Mokkae","Combo", "Adam", "Zafira Life", "Grandland X PHEV"] ,
+                            "PEUGEOT" : ["308" ,"208" ,"5008" ,"3008" ,"2008", "508" ,"3008 Hybrid" ,"Rifter", "807" ,"207","e2008" ,"Partner", "108" ,"Traveller" ,"e208" ,"RCZ" ,"508 Hybrid"] ,
+                            "PORSCHE" : ["Cayenne Coupe" ,"Boxster", "Cayenne", "Macan", "Panamera", "911", "718", "Taycan" ,"Cayman"] ,
+                            "RENAULT" : ["Kangoo Combi", "Captur" ,"Mégane", "Scenic" ,"Clio", "Trafic", "Kadjar", "Megane", "Grand Scenic" ,"Twingo" ,"Talisman", "Espace", "Zoe", "Koleos", "Arkana" ,"Megane ETech", "Kangoo", "Grand Espace", "Austral"] ,
+                            "SEAT" : ["Ibiza", "Leon" ,"Ateca", "Alhambra" ,"Tarraco", "Arona", "ALTEA", "Toledo", "Mii" ,"Exeo"] ,
+                            "SKODA" : ["Superb" ,"Kamiq", "Karoq" ,"Octavia" ,"Fabia", "Scala", "Kodiaq", "Scout", "Rapid", "Spaceback", "Yeti", "Enyaq", "Citigo"] ,
+                            "SMART" : ["fortwo", "forfour"] ,
+                            "SSANGYONG" : ["Rodius", "Rexton", "Korando" ,"Tivoli" ,"XLV"] ,
+                            "SUBARU" : ["Impreza", "XV", "LEVORG" ,"Legacy" ,"Forester" ,"Outback", "BRZ" ,"WRX STI"] ,
+                            "SUZUKI" : ["Vitara" ,"Swift", "Grand Vitara" ,"Jimny", "SCross" ,"Ignis", "SX4 SCross", "Baleno", "Celerio"] ,
+                            "TESLA" : ["Model 3" ,"Model S", "Model Y" ,"Model X"] ,
+                            "TOYOTA" : ["CHR", "Aygo", "Corolla", "Rav4", "Auris", "Prius","Yaris Cross", "Yaris", "Priusplus" ,"Verso", "Proace City", "Avensis", "Hilux", "Land Cruiser", "Proace Verso", "Corolla Sedan", "Highlander"] ,
+                            "VOLKSWAGEN" : ["Golf", "Multivan", "Caravelle" ,"Tiguan", "Polo", "Passat", "Touran" ,"Arteon", "TRoc", "TCross" ,"Touareg" ,"Sharan", "up", "Golf Sportsvan", "Scirocco", "eup", "Tiguan Allspace", "ID4", "Beetle", "CC" ,"California" ,"ID3", "Passat CC", "Jetta", "Taigo", "Caddy", "Transporter", "ID.3" ,"Golf Plus"] ,
+                            "VOLVO" : ["XC90", "XC60", "V90", "V40" ,"S90", "XC40", "S60" ,"V60" ,"V60 Cross Country", "V40 Cross Country", "V90 Cross Country" ,"XC70"],
+
+        };
+
+        function cargarModelos() {
+            var marca = document.getElementById("marca").value;
+            var modelos = modelos_por_marca[marca];
+
+            var select_modelo = document.getElementById("modelo");
+            select_modelo.innerHTML = "";
+
+            for (var i = 0; i < modelos.length; i++) {
+                var option = document.createElement("option");
+                option.text = modelos[i];
+                option.value = modelos[i];
+                select_modelo.add(option);
+            }
+        }
+    </script>
+</body>
+</html>

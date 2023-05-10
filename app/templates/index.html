@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <!--
+        <form action="http://127.0.0.1:5000/car">
+             <select name="marca">
+                <option>&nbsp;</option>
+                <option value="opel">opel</option>
+                <option value="vw">vw</option>
+            </select>
+            <select name="modelo">
+                <option>&nbsp;</option>
+                <option value="astra">astra</option>
+                <option value="polo">polo</option>
+                <option value="corsa">corsa</option>
+            </select>
+            <input type="number" name="cv">
+            <input type="submit">
+        </form>
+        <hr>
+        <select id="marca">
+            <option>&nbsp;</option>
+            <option value="opel">opel</option>
+            <option value="vw">vw</option>
+        </select>
+        <select id="modelo">
+            <option>&nbsp;</option>
+            <option value="astra">astra</option>
+            <option value="polo">polo</option>
+            <option value="corsa">corsa</option>
+        </select>
+        <input type="number" id="cv">
+        <input type="button" id="btConsulta" value="consultar precio">
+        precio: <span id="precio"></span>
+    -->
+        <label for="marca">Marca:</label>
+        <select id="marca" onchange="cargarModelos()">
+            <option value="" selected disabled>Seleccione una marca</option>
+            <option value="ABARTH">Abart</option>
+            <option value="ALFA ROMEO">Alfa Romeo</option>
+            <option value="AUDI">Audi</option>
+            <option value="BMW">BMW</option>
+            <option value="CHEVROLET">Chevrolet</option>
+            <option value="CITROEN">Citröen</option>
+            <option value="CUPRA">Cupra</option>
+            <option value="DACIA">Dacia</option>
+            <option value="DS">DS</option>
+            <option value="FERRARI">Ferrari</option>
+            <option value="FIAT">Fiat</option>
+            <option value="FORD">Ford</option>
+            <option value="HONDA">Honda</option>
+            <option value="HYUNDAI">Hyundai</option>
+            <option value="JAGUAR">Jaguar</option>
+            <option value="JEEP">Jeep</option>
+            <option value="KIA">Kia</option>
+            <option value="LAND-ROVER">Land-Rover</option>
+            <option value="MAZDA">Mazda</option>
+            <option value="MERCEDES-BENZ">Mercedes-Benz</option>
+            <option value="MINI">Mini</option>
+            <option value="MITSUBISHI">Mitsubishi</option>
+            <option value="NISSAN">Nissan</option>
+            <option value="OPEL">Opel</option>
+            <option value="PEUGEOT">Peugeot</option>
+            <option value="PORSCHE">Porsche</option>
+            <option value="RENAULT">Renault</option>
+            <option value="SEAT">Seat</option>
+            <option value="SKODA">Skoda</option>
+            <option value="SMART">Smart</option>
+            <option value="SSANGYONG">SsangYong</option>
+            <option value="SUBARU">Subaru</option>
+            <option value="SUZUKI">Suzuki</option>
+            <option value="TESLA">Tesla</option>
+            <option value="TOYOTA">Toyota</option>
+            <option value="VOLKSWAGEN">Volkswagen</option>
+            <option value="VOLVO">Volvo</option>
+        </select>
+    
+    <br>
+
+    <label for="modelo">Modelo:</label>
+    <select id="modelo"></select>
+
+    <br>
+        <label for="color">Color:</label>    
+        <select id="color">
+            <option value="" selected disabled>Seleccione un color</option>
+            <option value="black">Negro</option>
+            <option value="blue">Azul</option>
+            <option value="gray">Gris</option>
+            <option value="white">Blanco</option>
+            <option value="yellow">Amarillo</option>
+            <option value="green">Verde</option>
+            <option value="red">Rojo</option>
+            <option value="garnet">Granate</option>
+            <option value="beige">Beige</option>
+            <option value="orange">Naranja</option>
+            <option value="brown">Marrón</option>
+            <option value="purple">Morado</option>
+            <option value="pink">Rosa</option>
+          </select>
+    <br>
+    <label for="fuelType">Tipo de combustible:</label>    
+    <select id="fuelType">
+            <option value="" selected disabled>Seleccione tipo de combustible</option>
+            <option value="Gasolina">Gasolina</option>
+            <option value="Diésel">Diésel</option>
+            <option value="Híbrido">Híbrido</option>
+            <option value="Híbrido enchufable">Híbrido enchufable</option>
+            <option value="Eléctrico">Eléctrico</option>
+            <option value="Gas licuado (GLP)">Gas licuado (GLP)</option>
+            <option value="Gas natural (CNG)">Gas natural (CNG)</option>
+        </select>
+    <br>
+        <label for="province">Provincia:</label>        
+        <select id="province">
+            <option value="" selected disabled>Selecciona una provincia</option>
+            <option value="Álava">Álava</option>
+            <option value="Albacete">Albacete</option>
+            <option value="Alicante">Alicante</option>
+            <option value="Almería">Almería</option>
+            <option value="Asturias">Asturias</option>
+            <option value="Ávila">Ávila</option>
+            <option value="Badajoz">Badajoz</option>
+            <option value="Baleares">Baleares</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Burgos">Burgos</option>
+            <option value="Cáceres">Cáceres</option>
+            <option value="Cádiz">Cádiz</option>
+            <option value="Cantabria">Cantabria</option>
+            <option value="Castellón">Castellón</option>
+            <option value="Ciudad Real">Ciudad Real</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Cuenca">Cuenca</option>
+            <option value="Girona">Girona</option>
+            <option value="Granada">Granada</option>
+            <option value="Guadalajara">Guadalajara</option>
+            <option value="Guipúzcoa">Guipúzcoa</option>
+            <option value="Huelva">Huelva</option>
+            <option value="Huesca">Huesca</option>
+            <option value="Jaén">Jaén</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="Las Palmas">Las Palmas</option>
+            <option value="León">León</option>
+            <option value="Lleida">Lleida</option>
+            <option value="Lugo">Lugo</option>
+            <option value="Madrid">Madrid</option>
+            <option value="Málaga">Málaga</option>
+            <option value="Melilla">Melilla</option>
+            <option value="Murcia">Murcia</option>
+            <option value="Navarra">Navarra</option>
+            <option value="Ourense">Ourense</option>
+            <option value="Palencia">Palencia</option>
+            <option value="Pontevedra">Pontevedra</option>
+            <option value="Salamanca">Salamanca</option>
+            <option value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+            <option value="Segovia">Segovia</option>
+            <option value="Sevilla">Sevilla</option>
+            <option value="Soria">Soria</option>
+            <option value="Tarragona">Tarragona</option>
+            <option value="Teruel">Teruel</option>
+            <option value="Toledo">Toledo</option>
+            <option value="Valencia">Valencia</option>
+            <option value="Valladolid">Valladolid</option>
+            <option value="Vizcaya">Vizcaya</option>
+            <option value="Zamora">Zamora</option>
+            <option value="Zaragoza">Zaragoza</option>
+        </select>
+    <br>
+        <label for="transmissionType">Transmision:</label> 
+        <select id="transmissionType">
+            <option value="" selected disabled>Selecciona tipo de transmisión</option>
+            <option value="automatic">Automática</option>
+            <option value="manual">Manual</option>
+        </select>
+    <br>
+        <label for="bodyType">Carrocería:</label>    
+        <select id="bodyType">
+            <option value="" selected disabled>Seleccione carrocería</option>
+            <option value="berlina">Berlina</option>
+            <option value="cabrio">Cabrio</option>
+            <option value="coupe">Coupe</option>
+            <option value="familiar">Familiar</option>
+            <option value="minivan">Minivan</option>
+            <option value="monovolumen">Monovolumen</option>
+            <option value="pick_up">Pick-up</option>
+            <option value="4x4 suv">SUV 4x4</option>
+            <option value="sedan">Sedan</option>
+            <option value="4x4">Todo Terreno 4x4</option>
+        </select>
+    <br>
+        <label for="doors">Puertas:</label>    
+        <select id="doors">
+            <option value="" selected disabled>Selecciona una opción</option>
+            <option value="2.0">2</option>
+            <option value="3.0">3</option>
+            <option value="4.0">4</option>
+            <option value="5.0">5</option>
+        </select>
+    <br>
+    <label for="year">Año:</label>    
+    <select id="year">
+            <option value="year" selected disabled>Seleccione año</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+
+        <br>
+            CV: <input type="number" id="hp">
+            <br>
+            KM: <input type="number" id="km">
+            <br>
+            Cilindrada del Motor: <input type="number" id="cubicCapacity">
+        
+        
+        <br>
+            <input type="button" id="btConsulta" value="consultar precio"/>
+        <br>
+        <p id="precio"></p>
+        
+        <script>
+            var modelos_por_marca = {
+
+                            "ABARTH" : ["500", "500C", "695"] ,
+                            "ALFA ROMEO" : ["Giulietta" ,"Stelvio", "Giulia", "MiTo" ,"Tonale"] ,
+                            "AUDI" : ["A3", "A1", "Q2" ,"A4" ,"Q3" ,"A5", "Q7", "Q5" ,"A4 Allroad Quattro", "Q3 Sportback", "Q8", "A6" ,"A8", "SQ7", "Q5 SPORTBACK", "A7", "RS6" ,"S1" ,"R8", "A6 allroad quattro", "TT", "SQ5", "S5" ,"RS7" ,"RS4"] ,
+                            "BMW" : ["X3", "Serie 5", "X5", "Serie 1", "Serie 2 Gran Tourer", "X4", "Serie 4", "X1", "Serie 3", "Serie 7", "X2", "i3", "Serie 6", "i8", "Serie 2", "Serie 2 Active Tourer", "Serie 8", "X6" ,"i4", "iX3", "X7", "Z4", "iX"] ,
+                            "CHEVROLET" : ["Trax", "Orlando", "Aveo", "Captiva", "Cruze", "Camaro", "Spark", "Corvette Stingray"] ,
+                            "CITROEN" : ["C4 Picasso", "Grand C4 Picasso" ,"C3 Picasso" ,"C3", "C4", "CElysee", "C1", "Berlingo", "C3 Aircross" ,"Grand C4 Spacetourer", "C5 Aircross", "C4 Cactus", "C5 Aircross Hybrid", "C5" ,"C4 Spacetourer", "Spacetourer", "eC4" ,"Jumper", "DS3", "C4 Aircross", "DS4", "C5 X"] ,
+                            "CUPRA" : ["Ateca", "Formentor", "Born", "Leon"] ,
+                            "DACIA" : ["Sandero", "Duster", "Dokker", "Lodgy", "Logan"] ,
+                            "DS ": ["DS 4 Crossback", "DS 7 Crossback", "DS 3 Crossback" ,"DS 4", "DS 5", "DS 7 Crossback ETense", "DS 3"] ,
+                            "FERRARI" : ["California", "GTC4", "488" ,"458", "812" ,"Portofino" ,"FF"] ,
+                            "FIAT" : ["500X", "500L", "Tipo" ,"Freemont", "500" ,"Punto" ,"Panda", "500C", "124 Spider", "Doblo", "Qubo", "Fullback", "Doblo Panorama", "Ducato", "Doblo Cargo"] ,
+                            "FORD" : ["Focus", "EcoSport", "Mustang", "Puma", "Kuga", "Mondeo", "Ranger", "CMax", "Galaxy", "Fiesta" ,"SMAX" ,"BMAX", "Tourneo Custom", "Tourneo Courier", "KA", "Transit Connect", "Grand C-Max" ,"Edge", "Mustang MachE", "Kaplus", "Grand CMax", "Grand Tourneo Connect" ,"Fusion", "Explorer", "Tourneo Connect"] ,
+                            "HONDA" : ["Civic", "CRV", "Jazz" ,"HRV", "CR-V"] ,
+                            "HYUNDAI" : ["i40", "Kona", "ix20", "TUCSON", "ix35" ,"IONIQ", "i30", "Grand Santa Fe", "Santa Fe" ,"i20", "i10", "Elantra" ,"Bayon", "i20 Active", "H1 Travel"] ,
+                            "JAGUAR" : ["F-Pace", "EPace" ,"XF" ,"XE" ,"Fpace","FType", "iPace"] ,
+                            "JEEP" : ["Renegade" ,"Grand Cherokee" ,"Compass", "Wrangler Unlimited", "Wrangler", "Cherokee" ,"Gladiator"] ,
+                            "KIA" : ["Sportage" ,"Optima" ,"Ceed Tourer" ,"Pro Ceed", "Rio", "Carens", "Niro" ,"ceed", "eSoul" ,"Picanto" ,"eNiro", "Stonic", "Venga", "Sorento", "ProCeed", "XCeed", "ceed Sportswagon", "EV6", "Soul", "Soul EV", "cee'd"] ,
+                            "LAND-ROVER" : ["Range Rover Sport", "Range Rover Evoque", "Defender", "Discovery Sport", "Range Rover Velar", "Discovery 4", "Range Rover", "Discovery" ,"Freelander"] ,
+                            "LEXUS" : ["UX", "NX", "IS" ,"CT", "RX", "RC", "ES" ,"GS"] ,
+                            "MAZDA" : ["MX5", "CX5", "CX-5" ,"Mazda3", "CX30", "Mazda6", "CX3" ,"Mazda2", "CX7", "Mazda5", "MX30", "CX-3", "CX-30" ,"MX-5" ,"CX9"] ,
+                            "MERCEDES-BENZ" : ["Clase A", "Clase GLA" ,"Clase E" ,"Clase C", "Clase B", "Clase GLE Coupe", "Clase M" ,"Clase GLE", "Clase CLA", "GLB", "Clase GLK", "GLA", "Clase GLC", "GLE" ,"GLC Coupe" ,"Clase G", "CLA", "Clase X", "Clase V", "CLS", "Clase S", "Citan", "Clase GLS", "GLC Coupé", "Vito", "Clase CLS", "EQC" ,"EQA" ,"AMG GT", "Clase SLK", "Clase T", "EQE", "MercedesAMG GT", "GLC", "Clase SLC", "GLE Coupe", "Viano"] ,
+                            "MINI" : ["MINI","CLUBMAN" ,"Countryman", "Paceman"] ,
+                            "MITSUBISHI" : ["Space Star", "Outlander", "ASX" ,"Eclipse Cross" ,"L200", "Montero"] ,
+                            "NISSAN" : ["LEAF" ,"QASHQAI" ,"NOTE" ,"JUKE", "Micra", "Navara" ,"XTRAIL", "PULSAR", "GTR", "EVALIA" ,"NV300", "Townstar", "370Z", "NV200 EVALIA"] ,
+                            "OPEL" : ["Corsa", "Grandland X", "Combo Life", "Crossland", "Astra", "Cabrio", "Mokka X", "Antara", "Insignia" ,"GTC" ,"Mokka" ,"Zafira", "Grandland", "Vivaro", "Crossland X", "Grandland PHEV", "Zafira Tourer", "Corsae" ,"Meriva", "Mokkae","Combo", "Adam", "Zafira Life", "Grandland X PHEV"] ,
+                            "PEUGEOT" : ["308" ,"208" ,"5008" ,"3008" ,"2008", "508" ,"3008 Hybrid" ,"Rifter", "807" ,"207","e2008" ,"Partner", "108" ,"Traveller" ,"e208" ,"RCZ" ,"508 Hybrid"] ,
+                            "PORSCHE" : ["Cayenne Coupe" ,"Boxster", "Cayenne", "Macan", "Panamera", "911", "718", "Taycan" ,"Cayman"] ,
+                            "RENAULT" : ["Kangoo Combi", "Captur" ,"Mégane", "Scenic" ,"Clio", "Trafic", "Kadjar", "Megane", "Grand Scenic" ,"Twingo" ,"Talisman", "Espace", "Zoe", "Koleos", "Arkana" ,"Megane ETech", "Kangoo", "Grand Espace", "Austral"] ,
+                            "SEAT" : ["Ibiza", "Leon" ,"Ateca", "Alhambra" ,"Tarraco", "Arona", "ALTEA", "Toledo", "Mii" ,"Exeo"] ,
+                            "SKODA" : ["Superb" ,"Kamiq", "Karoq" ,"Octavia" ,"Fabia", "Scala", "Kodiaq", "Scout", "Rapid", "Spaceback", "Yeti", "Enyaq", "Citigo"] ,
+                            "SMART" : ["fortwo", "forfour"] ,
+                            "SSANGYONG" : ["Rodius", "Rexton", "Korando" ,"Tivoli" ,"XLV"] ,
+                            "SUBARU" : ["Impreza", "XV", "LEVORG" ,"Legacy" ,"Forester" ,"Outback", "BRZ" ,"WRX STI"] ,
+                            "SUZUKI" : ["Vitara" ,"Swift", "Grand Vitara" ,"Jimny", "SCross" ,"Ignis", "SX4 SCross", "Baleno", "Celerio"] ,
+                            "TESLA" : ["Model 3" ,"Model S", "Model Y" ,"Model X"] ,
+                            "TOYOTA" : ["CHR", "Aygo", "Corolla", "Rav4", "Auris", "Prius","Yaris Cross", "Yaris", "Priusplus" ,"Verso", "Proace City", "Avensis", "Hilux", "Land Cruiser", "Proace Verso", "Corolla Sedan", "Highlander"] ,
+                            "VOLKSWAGEN" : ["Golf", "Multivan", "Caravelle" ,"Tiguan", "Polo", "Passat", "Touran" ,"Arteon", "TRoc", "TCross" ,"Touareg" ,"Sharan", "up", "Golf Sportsvan", "Scirocco", "eup", "Tiguan Allspace", "ID4", "Beetle", "CC" ,"California" ,"ID3", "Passat CC", "Jetta", "Taigo", "Caddy", "Transporter", "ID.3" ,"Golf Plus"] ,
+                            "VOLVO" : ["XC90", "XC60", "V90", "V40" ,"S90", "XC40", "S60" ,"V60" ,"V60 Cross Country", "V40 Cross Country", "V90 Cross Country" ,"XC70"]
+
+            };
+    
+            function cargarModelos() {
+            var marca = document.getElementById("marca").value;
+            var modelo = modelos_por_marca[marca];
+
+            var select_modelo = document.getElementById("modelo");
+            select_modelo.innerHTML = "";
+
+            for (var i = 0; i < modelo.length; i++) {
+                var option = document.createElement("option");
+                option.text = modelo[i];
+                option.value = modelo[i];
+                select_modelo.add(option);
+            }
+        }
+        </script>
+
+        <!--
+        <script>
+            let btConsulta = document.getElementById("btConsulta");
+            let precio = document.getElementById("precio");
+            let marca = document.getElementById("marcas");
+            let modelo = document.getElementById("modelos");
+            let fuelType = document.getElementById("fuelType");
+            let province = document.getElementById("province");
+            let color = document.getElementById("color");
+            let transmissionType = document.getElementById("transmissionType");
+            let bodyType = document.getElementById("bodyType");
+            let doors = document.getElementById("doors");
+            let year = document.getElementById("year");
+            let cv = document.getElementById("cv");
+            let km = document.getElementById("km");
+            let cubicCapacity = document.getElementById("cubicCapacity");
+            
+            btConsulta.addEventListener('click', function() {
+                let marca_value = marca.options[marcas.selectedIndex].value;
+                let modelo_value = modelo.options[modelos.selectedIndex].value;
+                let fuelType_value = fuelType.options[fuelType.selectedIndex].value;
+                let province_value = province.options[province.selectedIndex].value;
+                let color_value = color.options[color.selectedIndex].value;
+                let transmissionType_value = transmissionType.options[transmissionType.selectedIndex].value;
+                let bodyType_value = bodyType.options[bodyType.selectedIndex].value;
+                let doors_value = doors.options[doors.selectedIndex].value;
+                let year_value = year.options[year.selectedIndex].value;
+                let cv_value = cv.value;
+                let km_value = km.value;
+                let cubicCapacity_value = cubicCapacity.value;
+
+
+                console.log([marca_value, modelo_value, fuelType_value, province_value, color_value, transmissionType_value, bodyType_value, doors_value, year_value, cv_value, km_value, cubicCapacity_value]);
+                //doFetch(marca_value, modelo_value, fuelType_value, province_value, color_value, transmissionType_value, bodyType_value, doors_value, year_value, cv_value, km_value, cubicCapacity_value);
+            });
+            function doFetch(marca_value, modelo_value, fuelType_value, province_value, color_value, transmissionType_value, bodyType_value, doors_value, year_value, cv_value, km_value, cubicCapacity_value)
+             {
+                fetch('http://127.0.0.1:5000/car?marca=' + marca_value 
+                                                        + '&modelo=' + modelo_value 
+                                                        + '&fuelType=' + fuelType_value 
+                                                        + '&province=' + province_value
+                                                        + '&color=' + color_value
+                                                        + '&transmissionType=' + transmissionType_value
+                                                        + '&bodyType=' + bodyType_value
+                                                        + '&doors=' + doors_value
+                                                        + '&year=' + year_value
+                                                        + '&cv=' + cv_value
+                                                        + '&km=' + km_value
+                                                        + '&cubicCapacity=' + cubicCapacity_value
+                                                        )
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonData) {
+                    console.log(jsonData);
+                    precio.innerText = jsonData.precio;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+            doFetch(marca_value, modelo_value, fuelType_value, province_value, color_value, transmissionType_value, bodyType_value, doors_value, year_value, cv_value, km_value, cubicCapacity_value);
+        -->
+
+        <script>
+        
+        function getCar(){
+            const brand = document.getElementById("marca").value;
+            const model = document.getElementById("modelo").value;
+            const hp = document.getElementById("hp").value;
+            const color = document.getElementById("color").value;
+            const fuelType = document.getElementById("fuelType").value;
+            const km = document.getElementById("km").value;
+            const province = document.getElementById("province").value;
+            const transmissionType = document.getElementById("transmissionType").value;
+            const year = document.getElementById("year").value;
+            const bodyType = document.getElementById("bodyType").value;
+            const cubicCapacity = document.getElementById("cubicCapacity").value;
+            const doors = document.getElementById("doors").value;
+            
+            const car = {
+                brand: brand,
+                model: model,
+                hp: hp,
+                color: color,
+                fuelType: fuelType,
+                km: km,
+                province: province,
+                transmissionType: transmissionType,
+                year: year,
+                bodyType: bodyType,
+                cubicCapacity: cubicCapacity,
+                doors: doors
+            };
+
+            return car;
+        }
+
+        
+        btConsulta.addEventListener('click', function() {
+            const car = getCar();
+            console.log(car);
+            doFetch(car);
+        });
+
+        function doFetch(car) {
+            fetch('http://127.0.0.1:5000/car?coche=' + JSON.stringify(car))
+            .then(function (response) {
+                console.log('enviado')
+                console.log(response)
+                return response.json();
+            })
+            .then(function (jsonData) {
+                console.log('proceso correcto')
+                console.log(jsonData)
+                precio.innerText = jsonData.precio;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+        </script>
+        
+    </body>
+</html>
